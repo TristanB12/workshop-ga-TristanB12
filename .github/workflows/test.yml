@@ -3,8 +3,11 @@ name: test
 on:
   push:
     branches:
-      - main
+      - master
       - dev
+  pull_request:
+    branches:
+      - master
 
 jobs:
   hello-world:
@@ -42,7 +45,7 @@ jobs:
       - name: Create artifacts
         run: touch function-tests_outputs
       - name: Run functional test
-        run: ./function-test.sh > function-tests_outputs
+        run: ./functional-test.sh > function-tests_outputs
       - uses: actions/upload-artifact@v2
         with:
           name: function-tests_outputs
