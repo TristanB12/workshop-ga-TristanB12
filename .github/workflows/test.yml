@@ -20,8 +20,15 @@ jobs:
     container: epitechcontent/epitest-docker
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout repo
+      uses: actions/checkout@v2
+    - name: Create artifacts
+      run: touch coverage_outputs
     - name: Run_unit_tests
       run: make tests_run
     - name: Run coverage
-      run: make coverage
+      run: make coverage > coverage_outputs
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Upload artifacts
+        path: coverage_outputs
