@@ -47,6 +47,7 @@ jobs:
       - name: Run functional test
         run: ./functional-test.sh > function-tests_outputs
       - uses: actions/upload-artifact@v2
+        if: ${{ always() }}
         with:
           name: function-tests_outputs
           path: ./
